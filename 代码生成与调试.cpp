@@ -57,6 +57,8 @@ int main()
     printf("初始网格间距：");
     scanf("%lf", &h);
     int i = 1;
+    FILE *output_file = fopen("error_data.csv", "w");
+
     while(h > 10e-8){
         y1 = Difference1(x);//计算精确的一阶导函数
         y1_1 = Difference1_1(h, x);//计算一阶导数两点向前差分
@@ -83,9 +85,15 @@ int main()
         if(i >1){
             printf("一阶差分1精度:%lf 一阶差分2精度:%lf\n二阶差分1精度:%lf 二阶差分2精度:%lf\n\n", p1_1, p1_2, p2_1, p2_2);
         }
+
+        fprintf(output_file, "%d %.10e %.10e %.10e %.10e %.10e\n", i, h, e1_1, e1_2, e2_1, e2_2);
+
         h = h / 2;
         i = i + 1;
     }
+
+    fclose(output_file);
+    printf("\n误差数据已保存到 error_data.csv\n");
     
     return 0;
 }
