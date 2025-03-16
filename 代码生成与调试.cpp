@@ -85,9 +85,7 @@ int main()
         if(i >1){
             printf("一阶差分1精度:%lf 一阶差分2精度:%lf\n二阶差分1精度:%lf 二阶差分2精度:%lf\n\n", p1_1, p1_2, p2_1, p2_2);
         }
-
         fprintf(output_file, "%.10e %.10e %.10e %.10e %.10e\n", h, e1_1, e1_2, e2_1, e2_2);
-
         h = h / 2;
         i = i + 1;
     }
